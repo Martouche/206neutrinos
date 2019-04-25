@@ -1,0 +1,76 @@
+#!/usr/bin/env python
+#-*- coding: utf-8 -*-
+
+import sys, os
+from math import *
+
+ERROR_EXIT = 84
+SUCCESS_EXIT = 0
+
+END_NAME = 'ENDE'
+
+def print_help():
+    print "USAGE\n\t   ./206neutrinos",
+    print " n a h sd\n\n",
+    print "DESCRIPTION"
+    print "\t   n\tnumber of values"
+    print "\t   a\tarithmetic mean"
+    print "\t   h\tharmonic mean"
+    print "\t   sd\tstandard deviation"
+
+def check_param_value(n, a, h, sd):
+    if (n < 0 or a < 0 or h < 0 or sd < 0):
+          sys.stderr.write('Error. All arguments must be positive\n')
+          exit(ERROR_EXIT)
+
+def check_input_value (ma):
+    if (ma < 0):
+        sys.stderr.write('Arguments must be positive\n')
+        exit(SUCCESS_EXIT)
+
+def check_the_end(chaine):
+    if (chaine == END_NAME):
+        exit(SUCCESS_EXIT)
+
+def neutirnos_executions(nb_val, a, h, sd):
+    while (True):
+        input_value = raw_input('indtast din vaerdi :  ')
+        check_the_end(input_value)
+        ma = float(input_value)
+        check_input_value(ma)
+        total = a * nb_val
+        temp = (sd * sd + a * a) * nb_val
+        nb_val = nb_val + 1
+        a = (total + ma) / nb_val
+        sd = sqrt(((temp + pow(ma, 2)) / nb_val) - pow(a, 2))
+        kvadratisk = sqrt((temp + pow(ma, 2)) / nb_val)
+        h = nb_val / ((1 / ma) + ((nb_val - 1) / h))
+        print "\tantal malinder :\t%d" % nb_val
+        print "\tstandardafvilgelse :\t%.2f" % sd
+        print "\taritmetisk gennemsnit :\t%.2f" % a
+        print "\tkvadratisk gennemsnit :\t%.2f" % kvadratisk
+        print "\tharmonisk gennemsnit :\t%.2f\n" % h;
+
+nbr_arg = len(sys.argv)
+
+if (nbr_arg == 2 and sys.argv[1] == "-help"):
+    print_help()
+    exit(SUCCESS_EXIT)
+
+if (nbr_arg < 5 or nbr_arg > 5):
+    sys.stderr.write('Error on arguments number. Try [./206neutrinos -help] to fix it\n')
+    exit(ERROR_EXIT)
+
+if (nbr_arg == 5):
+    try:
+        nb_val = float(sys.argv[1])
+        a = float(sys.argv[2])
+        h = float(sys.argv[3])
+        sd = float(sys.argv[4])
+        check_param_value(nb_val, a, h, sd)
+        neutirnos_executions(nb_val, a, h, sd)
+        exit(SUCCESS_EXIT)
+    except ValueError:
+        sys.stderr.write('Error. Arguments must only have a floating format\n')
+        exit(ERROR_EXIT)
+    exit(SUCCESS_EXIT)
