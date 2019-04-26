@@ -43,20 +43,18 @@ def my_neutrinos(tab):
     while (True):
         input_value = input("Enter next value: ")
         ma = check_input(input_value)
-        print(ma)
         total = tab[1] * tab[0]
         temp = (tab[3] * tab[3] + tab[1] * tab[1]) * tab[0]
-        print(temp)
         tab[0] = tab[0] + 1
         tab[1] = (total + ma) / tab[0]
-#        sd = sqrt(((temp + pow(ma, 2)) / nb_val) - pow(a, 2))
-#        kvadratisk = sqrt((temp + pow(ma, 2)) / nb_val)
-#        h = nb_val / ((1 / ma) + ((nb_val - 1) / h))
-#        print ("\tantal malinder :\t%d" % nb_val)
-#        print ("\tstandardafvilgelse :\t%.2f" % sd)
-#        print ("\taritmetisk gennemsnit :\t%.2f" % a)
-#        print ("\tkvadratisk gennemsnit :\t%.2f" % kvadratisk)
-#        print ("\tharmonisk gennemsnit :\t%.2f\n" % h)
+        tab[3] = sqrt(((temp + pow(ma, 2)) / tab[0]) - pow(tab[1], 2))
+        mean_square = sqrt((temp + pow(ma, 2)) / tab[0])
+        tab[2] = tab[0] / ((1 / ma) + ((tab[0] - 1) / tab[2]))
+        print ("\tantal malinder :\t%d" % tab[0])
+        print ("\tstandardafvilgelse :\t%.2f" % tab[3])
+        print ("\taritmetisk gennemsnit :\t%.2f" % tab[1])
+        print ("\tkvadratisk gennemsnit :\t%.2f" % mean_square)
+        print ("\tharmonisk gennemsnit :\t%.2f\n" % tab[2])
 
 def main():
     if (len(sys.argv) == 5):
