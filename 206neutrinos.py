@@ -50,6 +50,13 @@ def my_calcul(tab, ma):
     tab[2] = tab[0] / ((1 / ma) + ((tab[0] - 1) / tab[2]))
     return tab
 
+def print_funct(tab, mean_square):
+    print ("\tNumber of values:\t%d" % tab[0])
+    print ("\tStandard deviation:\t%.2f" % tab[3])
+    print ("\tArithmetic mean:\t%.2f" % tab[1])
+    print ("\tRoot mean square:\t%.2f" % mean_square)
+    print ("\tHarmonic mean:\t%.2f\n" % tab[2])
+
 def my_neutrinos(tab):
     while (True):
         input_value = input("Enter next value: ")
@@ -57,11 +64,8 @@ def my_neutrinos(tab):
         temp = (tab[3] * tab[3] + tab[1] * tab[1]) * tab[0]
         my_calcul(tab, ma)
         mean_square = sqrt((temp + pow(ma, 2)) / tab[0])
-        print ("\tNumber of values:\t%d" % tab[0])
-        print ("\tStandard deviation:\t%.2f" % tab[3])
-        print ("\tArithmetic mean:\t%.2f" % tab[1])
-        print ("\tRoot mean square:\t%.2f" % mean_square)
-        print ("\tHarmonic mean:\t%.2f\n" % tab[2])
+        print_funct(tab, mean_square)
+
 
 def main():
     if (len(sys.argv) == 5):
