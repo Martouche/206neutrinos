@@ -48,6 +48,8 @@ def my_calcul(tab, ma):
     mean_square = sqrt((temp + pow(ma, 2)) / tab[0])
     tab.append(mean_square)
     tab[2] = tab[0] / ((1 / ma) + ((tab[0] - 1) / tab[2]))
+    if tab[2] == 0:
+        exit(84)
     return tab
 
 def print_funct(tab, mean_square):
@@ -74,5 +76,5 @@ def main():
     else:
         exit(84)
     exit(0)
-    
+
 main()
