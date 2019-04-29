@@ -38,18 +38,14 @@ def check_input(input):
         exit(84)
     return ma
 
-#nb_val, a, h, sd
+#nb_val -> tab[0], a -> tab[1], h -> tab[2], sd -> tab[3]
 def my_calcul(tab, ma):
     total = tab[1] * tab[0]
     temp = (tab[3] * tab[3] + tab[1] * tab[1]) * tab[0]
     tab[0] = tab[0] + 1
     tab[1] = (total + ma) / tab[0]
     tab[3] = sqrt(((temp + pow(ma, 2)) / tab[0]) - pow(tab[1], 2))
-    mean_square = sqrt((temp + pow(ma, 2)) / tab[0])
-    tab.append(mean_square)
     tab[2] = tab[0] / ((1 / ma) + ((tab[0] - 1) / tab[2]))
-    if tab[2] == 0 or tab[2] < 0:
-        exit(84)
     return tab
 
 def print_funct(tab, mean_square):
@@ -72,6 +68,8 @@ def my_neutrinos(tab):
 def main():
     if (len(sys.argv) == 5):
         arg = error_handling()
+        if arg[2] == 0 or arg[2] < 0:
+            exit(84)
         my_neutrinos(arg)
     else:
         exit(84)
