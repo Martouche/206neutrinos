@@ -71,7 +71,8 @@ def main():
     if (len(sys.argv) == 5):
         arg = error_handling()
         my_neutrinos(arg)
-        print(arg)
     else:
         exit(84)
+    exit(0)
+    
 main()
